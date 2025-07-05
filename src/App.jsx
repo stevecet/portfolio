@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from "react"
 import {
   Box,
@@ -13,6 +15,8 @@ import {
   Fade,
   Slide,
   Stack,
+  IconButton,
+  Tooltip,
 } from "@mui/material"
 import {
   GitHub,
@@ -21,11 +25,13 @@ import {
   Launch,
   Code,
   Palette,
-  PhoneAndroid,
   Language,
   KeyboardArrowDown,
   Star,
   CalendarToday,
+  CloudDownload,
+  LocationOn,
+  Work,
 } from "@mui/icons-material"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import CssBaseline from "@mui/material/CssBaseline"
@@ -34,38 +40,38 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#9c27b0",
-      light: "#ba68c8",
-      dark: "#7b1fa2",
+      main: "#00d4ff",
+      light: "#4dd0e1",
+      dark: "#0097a7",
     },
     secondary: {
-      main: "#e91e63",
-      light: "#f06292",
-      dark: "#c2185b",
+      main: "#ff6b35",
+      light: "#ff8a65",
+      dark: "#e64a19",
     },
     background: {
-      default: "#0a0a0a",
-      paper: "rgba(30, 30, 30, 0.8)",
+      default: "#0a0e1a",
+      paper: "rgba(15, 23, 42, 0.8)",
     },
     text: {
       primary: "#ffffff",
-      secondary: "#b0b0b0",
+      secondary: "#94a3b8",
     },
   },
   typography: {
-    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"JetBrains Mono", "Fira Code", "Roboto Mono", monospace',
     h1: {
       fontWeight: 700,
-      fontSize: "4rem",
+      fontSize: "4.5rem",
       "@media (max-width:600px)": {
-        fontSize: "2.5rem",
+        fontSize: "2.8rem",
       },
     },
     h2: {
       fontWeight: 600,
-      fontSize: "2.5rem",
+      fontSize: "3rem",
       "@media (max-width:600px)": {
-        fontSize: "2rem",
+        fontSize: "2.2rem",
       },
     },
   },
@@ -73,13 +79,14 @@ const darkTheme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          backdropFilter: "blur(10px)",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-          transition: "all 0.3s ease-in-out",
+          backdropFilter: "blur(20px)",
+          border: "1px solid rgba(0, 212, 255, 0.2)",
+          borderRadius: "16px",
+          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           "&:hover": {
-            transform: "translateY(-4px)",
-            borderColor: "#9c27b0",
-            boxShadow: "0 8px 32px rgba(156, 39, 176, 0.3)",
+            transform: "translateY(-8px) scale(1.02)",
+            borderColor: "#00d4ff",
+            boxShadow: "0 20px 40px rgba(0, 212, 255, 0.4), 0 0 0 1px rgba(0, 212, 255, 0.5)",
           },
         },
       },
@@ -88,8 +95,9 @@ const darkTheme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
-          borderRadius: "8px",
+          borderRadius: "12px",
           fontWeight: 600,
+          padding: "12px 24px",
         },
       },
     },
@@ -106,49 +114,49 @@ export default function App() {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
+      title: "AI-Powered Dashboard",
       description:
-        "A full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.",
-      image: "/placeholder.svg?height=300&width=500",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe", "Material-UI"],
-      liveUrl: "https://example-ecommerce.com",
-      githubUrl: "https://github.com/username/ecommerce-platform",
+        "A comprehensive analytics dashboard with machine learning insights, real-time data visualization, and predictive analytics for business intelligence.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+      technologies: ["React", "Python", "TensorFlow", "D3.js", "FastAPI", "PostgreSQL"],
+      liveUrl: "https://example-ai-dashboard.com",
+      githubUrl: "https://github.com/username/ai-dashboard",
       featured: true,
       year: "2024",
     },
     {
       id: 2,
-      title: "Task Management App",
+      title: "Blockchain DeFi Platform",
       description:
-        "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      image: "/placeholder.svg?height=300&width=500",
-      technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Socket.io"],
-      liveUrl: "https://example-taskapp.com",
-      githubUrl: "https://github.com/username/task-manager",
+        "Decentralized finance platform with smart contracts, yield farming, and NFT marketplace integration. Built with Web3 technologies.",
+      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop",
+      technologies: ["Next.js", "Solidity", "Web3.js", "Ethereum", "IPFS", "MetaMask"],
+      liveUrl: "https://example-defi.com",
+      githubUrl: "https://github.com/username/defi-platform",
       featured: true,
       year: "2024",
     },
     {
       id: 3,
-      title: "Weather Dashboard",
+      title: "IoT Monitoring System",
       description:
-        "A responsive weather application with location-based forecasts, interactive maps, and detailed weather analytics.",
-      image: "/placeholder.svg?height=300&width=500",
-      technologies: ["React", "OpenWeather API", "Chart.js", "Material-UI"],
-      liveUrl: "https://example-weather.com",
-      githubUrl: "https://github.com/username/weather-dashboard",
+        "Real-time IoT device monitoring with sensor data visualization, alerts, and automated control systems for smart buildings.",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop",
+      technologies: ["React", "Node.js", "MQTT", "InfluxDB", "Grafana", "Arduino"],
+      liveUrl: "https://example-iot.com",
+      githubUrl: "https://github.com/username/iot-monitoring",
       featured: false,
-      year: "2023",
+      year: "2024",
     },
     {
       id: 4,
-      title: "Portfolio Website",
+      title: "Cloud Infrastructure Manager",
       description:
-        "A modern, responsive portfolio website showcasing web development projects with smooth animations and interactive elements.",
-      image: "/placeholder.svg?height=300&width=500",
-      technologies: ["Next.js", "Material-UI", "Framer Motion", "TypeScript"],
-      liveUrl: "https://example-portfolio.com",
-      githubUrl: "https://github.com/username/portfolio",
+        "Multi-cloud infrastructure management tool with automated deployment, monitoring, and cost optimization features.",
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop",
+      technologies: ["Vue.js", "Go", "Docker", "Kubernetes", "AWS", "Terraform"],
+      liveUrl: "https://example-cloud.com",
+      githubUrl: "https://github.com/username/cloud-manager",
       featured: false,
       year: "2023",
     },
@@ -176,10 +184,30 @@ export default function App() {
   ]
 
   const skills = [
-    { name: "Frontend", icon: Code, items: ["React", "Next.js", "TypeScript", "Material-UI"] },
-    { name: "Backend", icon: Language, items: ["Node.js", "Python", "PostgreSQL", "MongoDB"] },
-    { name: "Design", icon: Palette, items: ["Figma", "Adobe XD", "UI/UX", "Responsive Design"] },
-    { name: "Mobile", icon: PhoneAndroid, items: ["React Native", "Flutter", "iOS", "Android"] },
+    {
+      name: "Frontend",
+      icon: Code,
+      items: ["React", "Next.js", "TypeScript", "Vue.js", "Angular", "WebGL"],
+      image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop",
+    },
+    {
+      name: "Backend",
+      icon: Language,
+      items: ["Node.js", "Python", "Go", "PostgreSQL", "MongoDB", "Redis"],
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop",
+    },
+    {
+      name: "Cloud & DevOps",
+      icon: CloudDownload,
+      items: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform", "Monitoring"],
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop",
+    },
+    {
+      name: "AI & Data",
+      icon: Palette,
+      items: ["Machine Learning", "TensorFlow", "PyTorch", "Data Analysis", "Computer Vision"],
+      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop",
+    },
   ]
 
   return (
@@ -188,40 +216,76 @@ export default function App() {
       <Box
         sx={{
           minHeight: "100vh",
-          background: "linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #16213e 100%)",
+          background: `
+            linear-gradient(135deg, #0a0e1a 0%, #1e293b 25%, #0f172a 50%, #020617 100%),
+            url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1920&h=1080&fit=crop&overlay=dark') center/cover
+          `,
+          backgroundBlendMode: "overlay",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Animated Background Elements */}
+        {/* Animated Tech Grid Background */}
         <Box
           sx={{
             position: "absolute",
-            top: "-20%",
-            right: "-20%",
-            width: "40%",
-            height: "40%",
-            background: "radial-gradient(circle, rgba(156, 39, 176, 0.3) 0%, transparent 70%)",
-            borderRadius: "50%",
-            animation: "pulse 4s ease-in-out infinite",
-            "@keyframes pulse": {
-              "0%, 100%": { opacity: 0.3 },
-              "50%": { opacity: 0.6 },
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `
+              linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "50px 50px",
+            animation: "grid-move 20s linear infinite",
+            "@keyframes grid-move": {
+              "0%": { transform: "translate(0, 0)" },
+              "100%": { transform: "translate(50px, 50px)" },
             },
           }}
         />
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: "-20%",
-            left: "-20%",
-            width: "40%",
-            height: "40%",
-            background: "radial-gradient(circle, rgba(233, 30, 99, 0.3) 0%, transparent 70%)",
-            borderRadius: "50%",
-            animation: "pulse 4s ease-in-out infinite 2s",
-          }}
-        />
+
+        {/* Floating Particles */}
+        {[...Array(6)].map((_, i) => (
+          <Box
+            key={i}
+            sx={{
+              position: "absolute",
+              width: "4px",
+              height: "4px",
+              backgroundColor: "#00d4ff",
+              borderRadius: "50%",
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animation: `float-${i} ${3 + Math.random() * 4}s ease-in-out infinite`,
+              "@keyframes float-0": {
+                "0%, 100%": { transform: "translateY(0px) translateX(0px)" },
+                "50%": { transform: "translateY(-20px) translateX(10px)" },
+              },
+              "@keyframes float-1": {
+                "0%, 100%": { transform: "translateY(0px) translateX(0px)" },
+                "50%": { transform: "translateY(-15px) translateX(-10px)" },
+              },
+              "@keyframes float-2": {
+                "0%, 100%": { transform: "translateY(0px) translateX(0px)" },
+                "50%": { transform: "translateY(-25px) translateX(15px)" },
+              },
+              "@keyframes float-3": {
+                "0%, 100%": { transform: "translateY(0px) translateX(0px)" },
+                "50%": { transform: "translateY(-18px) translateX(-5px)" },
+              },
+              "@keyframes float-4": {
+                "0%, 100%": { transform: "translateY(0px) translateX(0px)" },
+                "50%": { transform: "translateY(-22px) translateX(8px)" },
+              },
+              "@keyframes float-5": {
+                "0%, 100%": { transform: "translateY(0px) translateX(0px)" },
+                "50%": { transform: "translateY(-16px) translateX(-12px)" },
+              },
+            }}
+          />
+        ))}
 
         {/* Hero Section */}
         <Box
@@ -241,64 +305,116 @@ export default function App() {
                 <Box sx={{ mb: 4 }}>
                   <Avatar
                     sx={{
-                      width: 120,
-                      height: 120,
+                      width: 140,
+                      height: 140,
                       mx: "auto",
                       mb: 3,
-                      background: "linear-gradient(45deg, #9c27b0 30%, #e91e63 90%)",
-                      fontSize: "3rem",
+                      background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
+                      border: "3px solid rgba(0, 212, 255, 0.3)",
+                      boxShadow: "0 0 30px rgba(0, 212, 255, 0.5)",
                     }}
-                  >
-                    <Code sx={{ fontSize: "3rem" }} />
-                  </Avatar>
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face"
+                  />
                 </Box>
 
                 <Typography
                   variant="h1"
                   sx={{
-                    background: "linear-gradient(45deg, #9c27b0 30%, #e91e63 90%)",
+                    background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
                     backgroundClip: "text",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
-                    mb: 3,
+                    mb: 2,
+                    textShadow: "0 0 30px rgba(0, 212, 255, 0.5)",
                   }}
                 >
-                   Developer
+                  Alex Chen
                 </Typography>
 
-                <Typography variant="h4" color="text.secondary" sx={{ mb: 4, fontWeight: 300, lineHeight: 1.4 }}>
-                  Full-Stack Web Developer crafting digital experiences
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "primary.main",
+                    mb: 3,
+                    fontFamily: '"JetBrains Mono", monospace',
+                    fontSize: "1.2rem",
+                  }}
+                >
+                  {"<"} Full-Stack Developer & AI Engineer {" />"}
+                </Typography>
+
+                <Typography variant="h4" color="text.secondary" sx={{ mb: 4, fontWeight: 300, lineHeight: 1.6 }}>
+                  Building the future with
                   <br />
-                  <Box component="span" sx={{ color: "primary.main", fontWeight: 500 }}>
-                    with passion and precision
+                  <Box component="span" sx={{ color: "primary.main", fontWeight: 600 }}>
+                    cutting-edge technology
+                  </Box>
+                  {" & "}
+                  <Box component="span" sx={{ color: "secondary.main", fontWeight: 600 }}>
+                    innovative solutions
                   </Box>
                 </Typography>
 
+                <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2 }}>
+                  <Chip
+                    icon={<LocationOn />}
+                    label="San Francisco, CA"
+                    variant="outlined"
+                    sx={{ borderColor: "primary.main", color: "primary.main" }}
+                  />
+                  <Chip
+                    icon={<Work />}
+                    label="Available for hire"
+                    variant="filled"
+                    sx={{ backgroundColor: "secondary.main", color: "white" }}
+                  />
+                </Stack>
+
                 <Stack direction="row" spacing={2} justifyContent="center" sx={{ mb: 6 }}>
                   {socialLinks.map((link) => (
-                    <Button
-                      key={link.name}
-                      variant="outlined"
-                      size="large"
-                      startIcon={<link.icon />}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      sx={{
-                        borderColor: "primary.main",
-                        color: "primary.main",
-                        "&:hover": {
-                          backgroundColor: "primary.main",
-                          color: "white",
-                          transform: "translateY(-2px)",
-                        },
-                        transition: "all 0.3s ease",
-                      }}
-                    >
-                      {link.name}
-                    </Button>
+                    <Tooltip key={link.name} title={`Connect on ${link.name}`}>
+                      <IconButton
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                          backgroundColor: "rgba(0, 212, 255, 0.1)",
+                          border: "1px solid rgba(0, 212, 255, 0.3)",
+                          color: "primary.main",
+                          "&:hover": {
+                            backgroundColor: "primary.main",
+                            color: "white",
+                            transform: "translateY(-3px) scale(1.1)",
+                            boxShadow: "0 10px 20px rgba(0, 212, 255, 0.4)",
+                          },
+                          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                        }}
+                      >
+                        <link.icon />
+                      </IconButton>
+                    </Tooltip>
                   ))}
                 </Stack>
+
+                <Button
+                  variant="contained"
+                  size="large"
+                  startIcon={<CloudDownload />}
+                  sx={{
+                    background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
+                    color: "white",
+                    px: 4,
+                    py: 1.5,
+                    fontSize: "1.1rem",
+                    "&:hover": {
+                      transform: "translateY(-2px)",
+                      boxShadow: "0 10px 25px rgba(0, 212, 255, 0.4)",
+                    },
+                    mb: 4,
+                  }}
+                >
+                  Download Resume
+                </Button>
 
                 <Box
                   sx={{
@@ -310,7 +426,7 @@ export default function App() {
                     },
                   }}
                 >
-                  <KeyboardArrowDown sx={{ fontSize: "2rem", color: "primary.main" }} />
+                  <KeyboardArrowDown sx={{ fontSize: "2.5rem", color: "primary.main" }} />
                 </Box>
               </Box>
             </Fade>
@@ -321,28 +437,48 @@ export default function App() {
         <Box
           component="section"
           sx={{
-            py: 10,
-            backgroundColor: "rgba(0, 0, 0, 0.3)",
-            backdropFilter: "blur(10px)",
+            py: 12,
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            backdropFilter: "blur(20px)",
+            borderTop: "1px solid rgba(0, 212, 255, 0.2)",
+            borderBottom: "1px solid rgba(0, 212, 255, 0.2)",
           }}
         >
           <Container maxWidth="lg">
-            <Typography variant="h2" textAlign="center" sx={{ mb: 8 }}>
-              Skills &{" "}
+            <Typography variant="h2" textAlign="center" sx={{ mb: 3 }}>
+              Technical{" "}
               <Box component="span" sx={{ color: "primary.main" }}>
                 Expertise
               </Box>
+            </Typography>
+            <Typography
+              variant="h6"
+              textAlign="center"
+              color="text.secondary"
+              sx={{ mb: 10, fontWeight: 300, maxWidth: "600px", mx: "auto" }}
+            >
+              Specialized in modern technologies and frameworks for building scalable, high-performance applications
             </Typography>
 
             <Grid container spacing={4}>
               {skills.map((skill, index) => (
                 <Grid item xs={12} sm={6} md={3} key={skill.name}>
                   <Slide in={isVisible} direction="up" timeout={1000 + index * 200}>
-                    <Card sx={{ height: "100%", textAlign: "center" }}>
-                      <CardContent sx={{ p: 3 }}>
+                    <Card sx={{ height: "100%", overflow: "hidden" }}>
+                      <CardMedia
+                        component="img"
+                        height="120"
+                        image={skill.image}
+                        alt={skill.name}
+                        sx={{
+                          filter: "brightness(0.7)",
+                          transition: "all 0.3s ease",
+                        }}
+                      />
+                      <CardContent sx={{ p: 3, textAlign: "center" }}>
                         <skill.icon
                           sx={{
-                            fontSize: "3rem",
+                            fontSize: "2.5rem",
                             color: "primary.main",
                             mb: 2,
                           }}
@@ -357,12 +493,15 @@ export default function App() {
                               label={item}
                               size="small"
                               sx={{
-                                backgroundColor: "rgba(156, 39, 176, 0.2)",
+                                backgroundColor: "rgba(0, 212, 255, 0.2)",
                                 color: "primary.light",
                                 mb: 1,
+                                fontSize: "0.75rem",
                                 "&:hover": {
-                                  backgroundColor: "rgba(156, 39, 176, 0.4)",
+                                  backgroundColor: "rgba(0, 212, 255, 0.4)",
+                                  transform: "scale(1.05)",
                                 },
+                                transition: "all 0.2s ease",
                               }}
                             />
                           ))}
@@ -377,9 +516,9 @@ export default function App() {
         </Box>
 
         {/* Projects Section */}
-        <Box component="section" sx={{ py: 10 }}>
+        <Box component="section" sx={{ py: 12 }}>
           <Container maxWidth="lg">
-            <Typography variant="h2" textAlign="center" sx={{ mb: 2 }}>
+            <Typography variant="h2" textAlign="center" sx={{ mb: 3 }}>
               Featured{" "}
               <Box component="span" sx={{ color: "primary.main" }}>
                 Projects
@@ -389,40 +528,51 @@ export default function App() {
               variant="h6"
               textAlign="center"
               color="text.secondary"
-              sx={{ mb: 8, fontWeight: 300, maxWidth: "600px", mx: "auto" }}
+              sx={{ mb: 10, fontWeight: 300, maxWidth: "700px", mx: "auto" }}
             >
-              Here are some of my recent projects that showcase my skills in web development, from concept to
-              deployment.
+              Showcasing innovative solutions across AI, blockchain, IoT, and cloud technologies that push the
+              boundaries of what's possible
             </Typography>
 
             {/* Featured Projects */}
-            <Grid container spacing={4} sx={{ mb: 8 }}>
+            <Grid container spacing={4} sx={{ mb: 10 }}>
               {projects
                 .filter((p) => p.featured)
                 .map((project, index) => (
                   <Grid item xs={12} md={6} key={project.id}>
                     <Fade in={isVisible} timeout={1500 + index * 300}>
-                      <Card sx={{ height: "100%", position: "relative" }}>
-                        <Box sx={{ position: "relative" }}>
+                      <Card sx={{ height: "100%", position: "relative", overflow: "hidden" }}>
+                        <Box sx={{ position: "relative", overflow: "hidden" }}>
                           <CardMedia
                             component="img"
-                            height="250"
+                            height="280"
                             image={project.image}
                             alt={project.title}
                             sx={{
-                              transition: "transform 0.3s ease",
-                              "&:hover": { transform: "scale(1.05)" },
+                              transition: "transform 0.5s ease",
+                              "&:hover": { transform: "scale(1.1)" },
+                            }}
+                          />
+                          <Box
+                            sx={{
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              background: "linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 53, 0.1))",
                             }}
                           />
                           <Chip
                             icon={<Star />}
                             label="Featured"
-                            color="primary"
                             sx={{
                               position: "absolute",
                               top: 16,
                               right: 16,
-                              backgroundColor: "primary.main",
+                              backgroundColor: "secondary.main",
+                              color: "white",
+                              fontWeight: 600,
                             }}
                           />
                           <Chip
@@ -432,21 +582,22 @@ export default function App() {
                               position: "absolute",
                               top: 16,
                               left: 16,
-                              backgroundColor: "rgba(0, 0, 0, 0.7)",
+                              backgroundColor: "rgba(0, 0, 0, 0.8)",
                               color: "white",
+                              backdropFilter: "blur(10px)",
                             }}
                           />
                         </Box>
 
-                        <CardContent sx={{ p: 3 }}>
-                          <Typography variant="h5" sx={{ mb: 2, fontWeight: 600 }}>
+                        <CardContent sx={{ p: 4 }}>
+                          <Typography variant="h5" sx={{ mb: 2, fontWeight: 700, color: "primary.main" }}>
                             {project.title}
                           </Typography>
-                          <Typography color="text.secondary" sx={{ mb: 3 }}>
+                          <Typography color="text.secondary" sx={{ mb: 3, lineHeight: 1.6 }}>
                             {project.description}
                           </Typography>
 
-                          <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ mb: 3 }}>
+                          <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ mb: 4 }}>
                             {project.technologies.map((tech) => (
                               <Chip
                                 key={tech}
@@ -457,6 +608,10 @@ export default function App() {
                                   borderColor: "primary.main",
                                   color: "primary.main",
                                   mb: 1,
+                                  fontWeight: 500,
+                                  "&:hover": {
+                                    backgroundColor: "rgba(0, 212, 255, 0.1)",
+                                  },
                                 }}
                               />
                             ))}
@@ -469,7 +624,13 @@ export default function App() {
                               href={project.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              sx={{ backgroundColor: "primary.main" }}
+                              sx={{
+                                background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
+                                "&:hover": {
+                                  transform: "translateY(-2px)",
+                                  boxShadow: "0 8px 20px rgba(0, 212, 255, 0.4)",
+                                },
+                              }}
                             >
                               Live Demo
                             </Button>
@@ -479,8 +640,16 @@ export default function App() {
                               href={project.githubUrl}
                               target="_blank"
                               rel="noopener noreferrer"
+                              sx={{
+                                borderColor: "primary.main",
+                                color: "primary.main",
+                                "&:hover": {
+                                  backgroundColor: "rgba(0, 212, 255, 0.1)",
+                                  transform: "translateY(-2px)",
+                                },
+                              }}
                             >
-                              Code
+                              View Code
                             </Button>
                           </Stack>
                         </CardContent>
@@ -491,34 +660,43 @@ export default function App() {
             </Grid>
 
             {/* Other Projects */}
+            <Typography variant="h4" sx={{ mb: 6, color: "text.primary" }}>
+              More Projects
+            </Typography>
             <Grid container spacing={3}>
               {projects
                 .filter((p) => !p.featured)
                 .map((project, index) => (
                   <Grid item xs={12} md={6} key={project.id}>
                     <Fade in={isVisible} timeout={2000 + index * 200}>
-                      <Card sx={{ display: "flex", height: 200 }}>
-                        <CardMedia component="img" sx={{ width: 160 }} image={project.image} alt={project.title} />
-                        <CardContent sx={{ flex: 1, p: 2 }}>
+                      <Card sx={{ display: "flex", height: 220, overflow: "hidden" }}>
+                        <CardMedia
+                          component="img"
+                          sx={{ width: 180, filter: "brightness(0.8)" }}
+                          image={project.image}
+                          alt={project.title}
+                        />
+                        <CardContent sx={{ flex: 1, p: 3 }}>
                           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
-                            <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                            <Typography variant="h6" sx={{ fontWeight: 600, color: "primary.main" }}>
                               {project.title}
                             </Typography>
                             <Chip
                               label={project.year}
                               size="small"
-                              sx={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                              sx={{ backgroundColor: "rgba(0, 212, 255, 0.2)", color: "primary.main" }}
                             />
                           </Box>
                           <Typography
                             color="text.secondary"
                             sx={{
                               mb: 2,
-                              fontSize: "0.875rem",
+                              fontSize: "0.9rem",
                               display: "-webkit-box",
-                              WebkitLineClamp: 2,
+                              WebkitLineClamp: 3,
                               WebkitBoxOrient: "vertical",
                               overflow: "hidden",
+                              lineHeight: 1.4,
                             }}
                           >
                             {project.description}
@@ -531,8 +709,8 @@ export default function App() {
                                 size="small"
                                 variant="outlined"
                                 sx={{
-                                  fontSize: "0.75rem",
-                                  height: 20,
+                                  fontSize: "0.7rem",
+                                  height: 22,
                                   borderColor: "primary.main",
                                   color: "primary.main",
                                 }}
@@ -542,7 +720,7 @@ export default function App() {
                               <Chip
                                 label={`+${project.technologies.length - 3}`}
                                 size="small"
-                                sx={{ fontSize: "0.75rem", height: 20 }}
+                                sx={{ fontSize: "0.7rem", height: 22, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
                               />
                             )}
                           </Stack>
@@ -554,7 +732,10 @@ export default function App() {
                               href={project.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              sx={{ fontSize: "0.75rem" }}
+                              sx={{
+                                fontSize: "0.75rem",
+                                background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
+                              }}
                             >
                               Demo
                             </Button>
@@ -565,7 +746,11 @@ export default function App() {
                               href={project.githubUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              sx={{ fontSize: "0.75rem" }}
+                              sx={{
+                                fontSize: "0.75rem",
+                                borderColor: "primary.main",
+                                color: "primary.main",
+                              }}
                             >
                               Code
                             </Button>
@@ -583,22 +768,28 @@ export default function App() {
         <Box
           component="section"
           sx={{
-            py: 10,
-            backgroundColor: "rgba(0, 0, 0, 0.3)",
-            backdropFilter: "blur(10px)",
+            py: 12,
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            backdropFilter: "blur(20px)",
+            borderTop: "1px solid rgba(0, 212, 255, 0.2)",
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=600&fit=crop')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundBlendMode: "overlay",
           }}
         >
           <Container maxWidth="md">
             <Box textAlign="center">
               <Typography variant="h2" sx={{ mb: 3 }}>
-                Let's{" "}
+                Let's Build{" "}
                 <Box component="span" sx={{ color: "primary.main" }}>
-                  Connect
+                  Something Amazing
                 </Box>
               </Typography>
-              <Typography variant="h6" color="text.secondary" sx={{ mb: 6, fontWeight: 300 }}>
-                I'm always interested in new opportunities and exciting projects. Let's discuss how we can work
-                together!
+              <Typography variant="h6" color="text.secondary" sx={{ mb: 8, fontWeight: 300, lineHeight: 1.6 }}>
+                Ready to turn your ideas into reality? I'm passionate about creating innovative solutions that make a
+                difference. Let's collaborate and build the future together.
               </Typography>
 
               <Stack direction="row" spacing={3} justifyContent="center" flexWrap="wrap">
@@ -614,12 +805,17 @@ export default function App() {
                     sx={{
                       borderColor: "primary.main",
                       color: "primary.main",
+                      px: 4,
+                      py: 1.5,
+                      fontSize: "1.1rem",
                       "&:hover": {
-                        backgroundColor: "primary.main",
+                        background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
                         color: "white",
-                        transform: "scale(1.05)",
+                        transform: "translateY(-3px) scale(1.05)",
+                        boxShadow: "0 10px 25px rgba(0, 212, 255, 0.4)",
+                        borderColor: "transparent",
                       },
-                      transition: "all 0.3s ease",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                       mb: { xs: 2, sm: 0 },
                     }}
                   >
@@ -635,15 +831,21 @@ export default function App() {
         <Box
           component="footer"
           sx={{
-            py: 4,
-            borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-            backgroundColor: "rgba(0, 0, 0, 0.2)",
+            py: 6,
+            borderTop: "1px solid rgba(0, 212, 255, 0.2)",
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            backdropFilter: "blur(10px)",
           }}
         >
           <Container maxWidth="lg">
-            <Typography textAlign="center" color="text.secondary">
-              © {new Date().getFullYear()} John Developer. Built with Next.js and Material-UI.
-            </Typography>
+            <Stack direction="row" justifyContent="space-between" alignItems="center" flexWrap="wrap">
+              <Typography color="text.secondary" sx={{ fontFamily: '"JetBrains Mono", monospace' }}>
+                © {new Date().getFullYear()} Alex Chen. Crafted with ❤️ using React & Material-UI
+              </Typography>
+              <Typography color="text.secondary" sx={{ fontSize: "0.9rem" }}>
+                Made with cutting-edge tech
+              </Typography>
+            </Stack>
           </Container>
         </Box>
       </Box>
