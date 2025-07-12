@@ -146,7 +146,7 @@ export default function App() {
       liveUrl: "https://example-iot.com",
       githubUrl: "https://github.com/username/iot-monitoring",
       featured: false,
-      year: "2024",
+      year: "2025",
     },
     {
       id: 4,
