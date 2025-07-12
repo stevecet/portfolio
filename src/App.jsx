@@ -23,14 +23,11 @@ import {
   Email,
   Launch,
   Code,
-  Palette,
   Language,
   KeyboardArrowDown,
-  Star,
+  StarBorder,
   CalendarToday,
   CloudDownload,
-  LocationOn,
-  Work,
   WhatsApp,
 } from "@mui/icons-material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -693,7 +690,7 @@ export default function App() {
                             }}
                           />
                           <Chip
-                            icon={<Star />}
+                            icon={<StarBorder />}
                             label="Featured"
                             sx={{
                               position: "absolute",
@@ -857,7 +854,6 @@ export default function App() {
                       <Card
                         sx={{
                           display: "flex",
-                          // height: 220,
                           overflow: "hidden",
                         }}
                       >
@@ -1136,7 +1132,7 @@ export default function App() {
           component="section"
           sx={{
             py: 12,
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
             backdropFilter: "blur(20px)",
             borderTop: "1px solid rgba(0, 212, 255, 0.2)",
             backgroundImage:
