@@ -106,11 +106,9 @@ let darkTheme = createTheme({
 });
 darkTheme = responsiveFontSizes(darkTheme);
 
-
-
 export default function App() {
   const [isVisible, setIsVisible] = useState(false);
-  
+
   useEffect(() => {
     setIsVisible(true);
   }, []);
@@ -229,44 +227,44 @@ export default function App() {
     {
       name: "Frontend",
       icon: Code,
-      items: ["React", "Next.js", "TypeScript", "Vue.js", "Angular", "WebGL"],
+      items: ["React", "Next.js", "TypeScript", "Vue.js", "Angular", "Tailwind"],
       image:
         "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop",
     },
     {
       name: "Backend",
       icon: Language,
-      items: ["Node.js", "Python", "Go", "PostgreSQL", "MongoDB", "Redis"],
+      items: ["Node.js", "Python", "MySQL", "PostgreSQL", "MongoDB", "Laravel"],
       image:
         "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop",
     },
-    {
-      name: "Cloud & DevOps",
-      icon: CloudDownload,
-      items: [
-        "AWS",
-        "Docker",
-        "Kubernetes",
-        "CI/CD",
-        "Terraform",
-        "Monitoring",
-      ],
-      image:
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop",
-    },
-    {
-      name: "AI & Data",
-      icon: Palette,
-      items: [
-        "Machine Learning",
-        "TensorFlow",
-        "PyTorch",
-        "Data Analysis",
-        "Computer Vision",
-      ],
-      image:
-        "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop",
-    },
+    // {
+    //   name: "Cloud & DevOps",
+    //   icon: CloudDownload,
+    //   items: [
+    //     "AWS",
+    //     "Docker",
+    //     "Kubernetes",
+    //     "CI/CD",
+    //     "Terraform",
+    //     "Monitoring",
+    //   ],
+    //   image:
+    //     "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop",
+    // },
+    // {
+    //   name: "AI & Data",
+    //   icon: Palette,
+    //   items: [
+    //     "Machine Learning",
+    //     "TensorFlow",
+    //     "PyTorch",
+    //     "Data Analysis",
+    //     "Computer Vision",
+    //   ],
+    //   image:
+    //     "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop",
+    // },
   ];
 
   return (
@@ -430,7 +428,7 @@ export default function App() {
 
                 <Stack
                   direction="row"
-                  spacing={5}
+                  spacing={2}
                   justifyContent="center"
                   sx={{ mb: 4 }}
                 >
@@ -451,32 +449,6 @@ export default function App() {
                   />
                 </Stack>
 
-                {/* <Stack direction="row" spacing={2} justifyContent="center" sx={{ mb: 6 }}>
-                  {socialLinks.map((link) => (
-                    <Tooltip key={link.name} title={`Connect on ${link.name}`}>
-                      <IconButton
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        sx={{
-                          backgroundColor: "rgba(0, 212, 255, 0.1)",
-                          border: "1px solid rgba(0, 212, 255, 0.3)",
-                          color: "primary.main",
-                          "&:hover": {
-                            backgroundColor: "primary.main",
-                            color: "white",
-                            transform: "translateY(-3px) scale(1.1)",
-                            boxShadow: "0 10px 20px rgba(0, 212, 255, 0.4)",
-                          },
-                          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                        }}
-                      >
-                        <link.icon />
-                      </IconButton>
-                    </Tooltip>
-                  ))}
-                </Stack> */}
-
                 <Button
                   variant="outlined"
                   size="large"
@@ -491,9 +463,26 @@ export default function App() {
                     borderColor:
                       "linear-gradient(45deg, #00d4ff 40%, #ff6b35 50%)",
                     color: "white",
-                    px: 4,
-                    py: 1.5,
-                    fontSize: "1.1rem",
+                    fontSize: {
+                      xs: "0.75rem", // small screens
+                      sm: "0.875rem",
+                      md: "1rem",
+                    },
+                    px: {
+                      xs: 2, // horizontal padding
+                      sm: 3,
+                      md: 4,
+                    },
+                    py: {
+                      xs: 1, // vertical padding
+                      sm: 1.25,
+                      md: 1.5,
+                    },
+                    borderRadius: {
+                      xs: "8px",
+                      sm: "10px",
+                      md: "12px",
+                    },
                     "&:hover": {
                       transform: "translateY(-2px)",
                       boxShadow: "0 10px 25px rgba(0, 212, 255, 0.4)",
@@ -654,7 +643,6 @@ export default function App() {
                         <Box sx={{ position: "relative", overflow: "hidden" }}>
                           <CardMedia
                             component="img"
-                            height="280"
                             image={project.image}
                             alt={project.title}
                             sx={{
@@ -750,13 +738,33 @@ export default function App() {
                               target="_blank"
                               rel="noopener noreferrer"
                               sx={{
+                                fontSize: {
+                                  xs: "0.75rem", // small screens
+                                  sm: "0.875rem",
+                                  md: "1rem",
+                                },
+                                px: {
+                                  xs: 2, // horizontal padding
+                                  sm: 3,
+                                  md: 4,
+                                },
+                                py: {
+                                  xs: 1, // vertical padding
+                                  sm: 1.25,
+                                  md: 1.5,
+                                },
+                                borderRadius: {
+                                  xs: "8px",
+                                  sm: "10px",
+                                  md: "12px",
+                                },
                                 borderColor: "primary.main",
                                 "&:hover": {
                                   transform: "translateY(-2px)",
                                 },
                               }}
                             >
-                              Live Demo
+                              Demo
                             </Button>
                             <Button
                               variant="outlined"
@@ -765,6 +773,26 @@ export default function App() {
                               target="_blank"
                               rel="noopener noreferrer"
                               sx={{
+                                fontSize: {
+                                  xs: "0.75rem", // small screens
+                                  sm: "0.875rem",
+                                  md: "1rem",
+                                },
+                                px: {
+                                  xs: 2, // horizontal padding
+                                  sm: 3,
+                                  md: 4,
+                                },
+                                py: {
+                                  xs: 1, // vertical padding
+                                  sm: 1.25,
+                                  md: 1.5,
+                                },
+                                borderRadius: {
+                                  xs: "8px",
+                                  sm: "10px",
+                                  md: "12px",
+                                },
                                 borderColor: "primary.main",
                                 color: "primary.main",
                                 "&:hover": {
@@ -773,7 +801,7 @@ export default function App() {
                                 },
                               }}
                             >
-                              View Code
+                              Code
                             </Button>
                           </Stack>
                         </CardContent>
@@ -796,16 +824,10 @@ export default function App() {
                       <Card
                         sx={{
                           display: "flex",
-                          height: 220,
+                          // height: 220,
                           overflow: "hidden",
                         }}
                       >
-                        <CardMedia
-                          component="img"
-                          sx={{ width: 180, filter: "brightness(0.8)" }}
-                          image={project.image}
-                          alt={project.title}
-                        />
                         <CardContent sx={{ flex: 1, p: 3 }}>
                           <Box
                             sx={{
@@ -873,6 +895,26 @@ export default function App() {
                               target="_blank"
                               rel="noopener noreferrer"
                               sx={{
+                                fontSize: {
+                                  xs: "0.75rem", // small screens
+                                  sm: "0.875rem",
+                                  md: "1rem",
+                                },
+                                px: {
+                                  xs: 2, // horizontal padding
+                                  sm: 3,
+                                  md: 4,
+                                },
+                                py: {
+                                  xs: 1, // vertical padding
+                                  sm: 1.25,
+                                  md: 1.5,
+                                },
+                                borderRadius: {
+                                  xs: "8px",
+                                  sm: "10px",
+                                  md: "12px",
+                                },
                                 borderColor: "primary.main",
                                 "&:hover": {
                                   transform: "translateY(-2px)",
@@ -889,13 +931,156 @@ export default function App() {
                               target="_blank"
                               rel="noopener noreferrer"
                               sx={{
-                                fontSize: "0.75rem",
+                                fontSize: {
+                                  xs: "0.75rem", // small screens
+                                  sm: "0.875rem",
+                                  md: "1rem",
+                                },
+                                px: {
+                                  xs: 2, // horizontal padding
+                                  sm: 3,
+                                  md: 4,
+                                },
+                                py: {
+                                  xs: 1, // vertical padding
+                                  sm: 1.25,
+                                  md: 1.5,
+                                },
+                                borderRadius: {
+                                  xs: "8px",
+                                  sm: "10px",
+                                  md: "12px",
+                                },
                                 borderColor: "primary.main",
                                 color: "primary.main",
                               }}
                             >
                               Code
                             </Button>
+                          </Stack>
+                        </CardContent>
+                      </Card>
+                    </Fade>
+                  </Grid>
+                ))}
+            </Grid>
+          </Container>
+        </Box>
+
+        <Box
+          component="section"
+          sx={{
+            py: 6,
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            backdropFilter: "blur(20px)",
+            borderTop: "1px solid rgba(0, 212, 255, 0.2)",
+            borderBottom: "1px solid rgba(0, 212, 255, 0.2)",
+          }}
+        >
+          <Container maxWidth="lg">
+            <Typography variant="h2" textAlign="center" sx={{ mb: 3 }}>
+              Certifications
+            </Typography>
+            <Typography
+              variant="h6"
+              textAlign="center"
+              color="text.secondary"
+              sx={{ mb: 10, fontWeight: 300, maxWidth: "700px", mx: "auto" }}
+            >
+              These certifications, earned through rigorous, industry-aligned
+              programs, have equipped me with end-to-end development skills.
+            </Typography>
+
+            {/* Certifications */}
+            <Grid container spacing={4} sx={{ mb: 3 }}>
+              {projects
+                .filter((p) => p.featured)
+                .map((project, index) => (
+                  <Grid size={{ xs: 12, md: 6 }} key={project.id}>
+                    <Fade in={isVisible} timeout={1500 + index * 300}>
+                      <Card
+                        sx={{
+                          height: "100%",
+                          position: "relative",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <Box sx={{ position: "relative", overflow: "hidden" }}>
+                          <CardMedia
+                            component="img"
+                            image={project.image}
+                            alt={project.title}
+                            sx={{
+                              transition: "transform 0.5s ease",
+                              "&:hover": { transform: "scale(1.1)" },
+                            }}
+                          />
+                          <Box
+                            sx={{
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              background:
+                                "linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 53, 0.1))",
+                            }}
+                          />
+                          <Chip
+                            icon={<CalendarToday />}
+                            label={project.year}
+                            sx={{
+                              position: "absolute",
+                              top: 16,
+                              left: 16,
+                              backgroundColor: "rgba(0, 0, 0, 0.8)",
+                              color: "white",
+                              backdropFilter: "blur(10px)",
+                            }}
+                          />
+                        </Box>
+
+                        <CardContent sx={{ p: 4 }}>
+                          <Typography
+                            variant="h5"
+                            sx={{
+                              mb: 2,
+                              fontWeight: 700,
+                              color: "primary.main",
+                            }}
+                          >
+                            {project.title}
+                          </Typography>
+                          <Typography
+                            color="text.secondary"
+                            sx={{ mb: 3, lineHeight: 1.6 }}
+                          >
+                            {project.description}
+                          </Typography>
+
+                          <Stack
+                            direction="row"
+                            spacing={1}
+                            flexWrap="wrap"
+                            rowGap={1}
+                            sx={{ mb: 4 }}
+                          >
+                            {project.technologies.map((tech) => (
+                              <Chip
+                                key={tech}
+                                label={tech}
+                                variant="outlined"
+                                size="small"
+                                sx={{
+                                  borderColor: "primary.main",
+                                  color: "primary.main",
+                                  fontWeight: 500,
+                                  "&:hover": {
+                                    backgroundColor: "rgba(0, 212, 255, 0.1)",
+                                  },
+                                }}
+                              />
+                            ))}
                           </Stack>
                         </CardContent>
                       </Card>
@@ -943,7 +1128,7 @@ export default function App() {
                 direction="row"
                 spacing={3}
                 justifyContent="center"
-                flexWrap="wrap"
+                flexWrap={"wrap-reverse"}
                 rowGap={1}
               >
                 {socialLinks.map((link) => (
@@ -958,7 +1143,26 @@ export default function App() {
                     sx={{
                       borderColor: "primary.main",
                       color: "primary.main",
-                      fontSize: "1.1rem",
+                      fontSize: {
+                        xs: "0.75rem", // small screens
+                        sm: "0.875rem",
+                        md: "1rem",
+                      },
+                      px: {
+                        xs: 2, // horizontal padding
+                        sm: 3,
+                        md: 4,
+                      },
+                      py: {
+                        xs: 1, // vertical padding
+                        sm: 1.25,
+                        md: 1.5,
+                      },
+                      borderRadius: {
+                        xs: "8px",
+                        sm: "10px",
+                        md: "12px",
+                      },
                       "&:hover": {
                         color: "white",
                         transform: "translateY(-3px) scale(1.05)",
