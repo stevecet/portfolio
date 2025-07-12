@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import {
   Box,
   Container,
@@ -15,9 +15,8 @@ import {
   Fade,
   Slide,
   Stack,
-  IconButton,
-  Tooltip,
-} from "@mui/material"
+  responsiveFontSizes,
+} from "@mui/material";
 import {
   GitHub,
   LinkedIn,
@@ -32,11 +31,12 @@ import {
   CloudDownload,
   LocationOn,
   Work,
-} from "@mui/icons-material"
-import { ThemeProvider, createTheme } from "@mui/material/styles"
-import CssBaseline from "@mui/material/CssBaseline"
+  WhatsApp,
+} from "@mui/icons-material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
-const darkTheme = createTheme({
+let darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
@@ -86,7 +86,8 @@ const darkTheme = createTheme({
           "&:hover": {
             transform: "translateY(-8px) scale(1.02)",
             borderColor: "#00d4ff",
-            boxShadow: "0 20px 40px rgba(0, 212, 255, 0.4), 0 0 0 1px rgba(0, 212, 255, 0.5)",
+            boxShadow:
+              "0 20px 40px rgba(0, 212, 255, 0.4), 0 0 0 1px rgba(0, 212, 255, 0.5)",
           },
         },
       },
@@ -102,14 +103,17 @@ const darkTheme = createTheme({
       },
     },
   },
-})
+});
+darkTheme = responsiveFontSizes(darkTheme);
+
+
 
 export default function App() {
-  const [isVisible, setIsVisible] = useState(false)
-
+  const [isVisible, setIsVisible] = useState(false);
+  
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
+    setIsVisible(true);
+  }, []);
 
   const projects = [
     {
@@ -117,8 +121,16 @@ export default function App() {
       title: "AI-Powered Dashboard",
       description:
         "A comprehensive analytics dashboard with machine learning insights, real-time data visualization, and predictive analytics for business intelligence.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-      technologies: ["React", "Python", "TensorFlow", "D3.js", "FastAPI", "PostgreSQL"],
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+      technologies: [
+        "React",
+        "Python",
+        "TensorFlow",
+        "D3.js",
+        "FastAPI",
+        "PostgreSQL",
+      ],
       liveUrl: "https://example-ai-dashboard.com",
       githubUrl: "https://github.com/username/ai-dashboard",
       featured: true,
@@ -129,8 +141,16 @@ export default function App() {
       title: "Blockchain DeFi Platform",
       description:
         "Decentralized finance platform with smart contracts, yield farming, and NFT marketplace integration. Built with Web3 technologies.",
-      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop",
-      technologies: ["Next.js", "Solidity", "Web3.js", "Ethereum", "IPFS", "MetaMask"],
+      image:
+        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop",
+      technologies: [
+        "Next.js",
+        "Solidity",
+        "Web3.js",
+        "Ethereum",
+        "IPFS",
+        "MetaMask",
+      ],
       liveUrl: "https://example-defi.com",
       githubUrl: "https://github.com/username/defi-platform",
       featured: true,
@@ -141,8 +161,16 @@ export default function App() {
       title: "IoT Monitoring System",
       description:
         "Real-time IoT device monitoring with sensor data visualization, alerts, and automated control systems for smart buildings.",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop",
-      technologies: ["React", "Node.js", "MQTT", "InfluxDB", "Grafana", "Arduino"],
+      image:
+        "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop",
+      technologies: [
+        "React",
+        "Node.js",
+        "MQTT",
+        "InfluxDB",
+        "Grafana",
+        "Arduino",
+      ],
       liveUrl: "https://example-iot.com",
       githubUrl: "https://github.com/username/iot-monitoring",
       featured: false,
@@ -153,14 +181,22 @@ export default function App() {
       title: "Cloud Infrastructure Manager",
       description:
         "Multi-cloud infrastructure management tool with automated deployment, monitoring, and cost optimization features.",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop",
-      technologies: ["Vue.js", "Go", "Docker", "Kubernetes", "AWS", "Terraform"],
+      image:
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop",
+      technologies: [
+        "Vue.js",
+        "Go",
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "Terraform",
+      ],
       liveUrl: "https://example-cloud.com",
       githubUrl: "https://github.com/username/cloud-manager",
       featured: false,
       year: "2023",
     },
-  ]
+  ];
 
   const socialLinks = [
     {
@@ -181,34 +217,57 @@ export default function App() {
       icon: Email,
       color: "#ea4335",
     },
-  ]
+    {
+      name: "WhatsApp",
+      url: "https://wa.me/237659461748",
+      icon: WhatsApp,
+      color: "#ea4335",
+    },
+  ];
 
   const skills = [
     {
       name: "Frontend",
       icon: Code,
       items: ["React", "Next.js", "TypeScript", "Vue.js", "Angular", "WebGL"],
-      image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop",
     },
     {
       name: "Backend",
       icon: Language,
       items: ["Node.js", "Python", "Go", "PostgreSQL", "MongoDB", "Redis"],
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop",
     },
     {
       name: "Cloud & DevOps",
       icon: CloudDownload,
-      items: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform", "Monitoring"],
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop",
+      items: [
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "Terraform",
+        "Monitoring",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop",
     },
     {
       name: "AI & Data",
       icon: Palette,
-      items: ["Machine Learning", "TensorFlow", "PyTorch", "Data Analysis", "Computer Vision"],
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop",
+      items: [
+        "Machine Learning",
+        "TensorFlow",
+        "PyTorch",
+        "Data Analysis",
+        "Computer Vision",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop",
     },
-  ]
+  ];
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -216,11 +275,12 @@ export default function App() {
       <Box
         sx={{
           minHeight: "100vh",
-          background: `
-            linear-gradient(135deg, #0a0e1a 0%, #1e293b 25%, #0f172a 50%, #020617 100%),
-            url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1920&h=1080&fit=crop&overlay=dark') center/cover
-          `,
+          backgroundImage: `url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1920&h=1080&fit=crop')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
           backgroundBlendMode: "overlay",
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
           position: "relative",
           overflow: "hidden",
         }}
@@ -258,7 +318,9 @@ export default function App() {
               borderRadius: "50%",
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              animation: `float-${i} ${3 + Math.random() * 4}s ease-in-out infinite`,
+              animation: `float-${i} ${
+                3 + Math.random() * 4
+              }s ease-in-out infinite`,
               "@keyframes float-0": {
                 "0%, 100%": { transform: "translateY(0px) translateX(0px)" },
                 "50%": { transform: "translateY(-20px) translateX(10px)" },
@@ -308,7 +370,8 @@ export default function App() {
                       width: 140,
                       height: 140,
                       mx: "auto",
-                      background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
+                      background:
+                        "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
                       boxShadow: "0 0 30px rgba(0, 212, 255, 0.5)",
                     }}
                     src="img/steveceto.jpeg"
@@ -318,7 +381,8 @@ export default function App() {
                 <Typography
                   variant="h1"
                   sx={{
-                    background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
+                    background:
+                      "linear-gradient(45deg, #00d4ff 30%, #ff6b35 70%)",
                     backgroundClip: "text",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
@@ -334,7 +398,7 @@ export default function App() {
                   variant="h6"
                   sx={{
                     color: "primary.main",
-                    mb: 3,
+                    mb: 2,
                     fontFamily: '"JetBrains Mono", monospace',
                     fontSize: "1.2rem",
                   }}
@@ -342,30 +406,48 @@ export default function App() {
                   {"<"} Full-Stack Developer & Software Engineer {" />"}
                 </Typography>
 
-                <Typography variant="h4" color="text.secondary" sx={{ mb: 4, fontWeight: 300, lineHeight: 1.6 }}>
+                <Typography
+                  variant="h4"
+                  color="text.secondary"
+                  sx={{ mb: 4, fontWeight: 300, lineHeight: 1.6 }}
+                >
                   Building the future with
                   <br />
-                  <Box component="span" sx={{ color: "primary.main", fontWeight: 600 }}>
+                  <Box
+                    component="span"
+                    sx={{ color: "primary.main", fontWeight: 600 }}
+                  >
                     cutting-edge technology
                   </Box>
                   {" & "}
-                  <Box component="span" sx={{ color: "secondary.main", fontWeight: 600 }}>
+                  <Box
+                    component="span"
+                    sx={{ color: "secondary.main", fontWeight: 600 }}
+                  >
                     innovative solutions
                   </Box>
                 </Typography>
 
-                <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 4 }}>
+                <Stack
+                  direction="row"
+                  spacing={5}
+                  justifyContent="center"
+                  sx={{ mb: 4 }}
+                >
                   <Chip
-                    icon={<LocationOn />}
+                    // icon={<LocationOn />}
                     label="Douala, Cameroon"
                     variant="outlined"
                     sx={{ borderColor: "primary.main", color: "primary.main" }}
                   />
                   <Chip
-                    icon={<Work />}
+                    // icon={<Work />}
                     label="Available for hire"
-                    variant="filled"
-                    sx={{ backgroundColor: "secondary.main", color: "white" }}
+                    variant="outlined"
+                    sx={{
+                      borderColor: "secondary.main",
+                      color: "secondary.main",
+                    }}
                   />
                 </Stack>
 
@@ -396,11 +478,18 @@ export default function App() {
                 </Stack> */}
 
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   size="large"
                   startIcon={<CloudDownload />}
+                  onClick={() => {
+                    const link = document.createElement("a");
+                    link.href = "/CV_Steveceto.pdf";
+                    link.download = "CV_Steveceto.pdf";
+                    link.click();
+                  }}
                   sx={{
-                    background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
+                    borderColor:
+                      "linear-gradient(45deg, #00d4ff 40%, #ff6b35 50%)",
                     color: "white",
                     px: 4,
                     py: 1.5,
@@ -425,7 +514,9 @@ export default function App() {
                     },
                   }}
                 >
-                  <KeyboardArrowDown sx={{ fontSize: "2.5rem", color: "primary.main" }} />
+                  <KeyboardArrowDown
+                    sx={{ fontSize: "2.5rem", color: "primary.main" }}
+                  />
                 </Box>
               </Box>
             </Fade>
@@ -456,13 +547,18 @@ export default function App() {
               color="text.secondary"
               sx={{ mb: 10, fontWeight: 300, maxWidth: "600px", mx: "auto" }}
             >
-              Specialized in modern technologies and frameworks for building scalable, high-performance applications
+              Specialized in modern technologies and frameworks for building
+              scalable, high-performance applications
             </Typography>
 
             <Grid container spacing={4}>
               {skills.map((skill, index) => (
-                <Grid size={{ xs: 12, sm:6 }} key={skill.name}>
-                  <Slide in={isVisible} direction="up" timeout={1000 + index * 200}>
+                <Grid size={{ xs: 12, sm: 6 }} key={skill.name}>
+                  <Slide
+                    in={isVisible}
+                    direction="up"
+                    timeout={1000 + index * 200}
+                  >
                     <Card sx={{ height: "100%", overflow: "hidden" }}>
                       <CardMedia
                         component="img"
@@ -482,10 +578,19 @@ export default function App() {
                             mb: 2,
                           }}
                         />
-                        <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
+                        <Typography
+                          variant="h6"
+                          sx={{ mb: 2, fontWeight: 600 }}
+                        >
                           {skill.name}
                         </Typography>
-                        <Stack direction="row" spacing={1} flexWrap="wrap" justifyContent="center">
+                        <Stack
+                          direction="row"
+                          spacing={1}
+                          flexWrap="wrap"
+                          rowGap={1}
+                          justifyContent="center"
+                        >
                           {skill.items.map((item) => (
                             <Chip
                               key={item}
@@ -494,7 +599,6 @@ export default function App() {
                               sx={{
                                 backgroundColor: "rgba(0, 212, 255, 0.2)",
                                 color: "primary.light",
-                                mb: 1,
                                 fontSize: "0.75rem",
                                 "&:hover": {
                                   backgroundColor: "rgba(0, 212, 255, 0.4)",
@@ -529,8 +633,8 @@ export default function App() {
               color="text.secondary"
               sx={{ mb: 10, fontWeight: 300, maxWidth: "700px", mx: "auto" }}
             >
-              Showcasing innovative solutions across AI, blockchain, IoT, and cloud technologies that push the
-              boundaries of what's possible
+              Showcasing innovative solutions across AI, blockchain, IoT, and
+              cloud technologies that push the boundaries of what's possible
             </Typography>
 
             {/* Featured Projects */}
@@ -540,7 +644,13 @@ export default function App() {
                 .map((project, index) => (
                   <Grid size={{ xs: 12, md: 6 }} key={project.id}>
                     <Fade in={isVisible} timeout={1500 + index * 300}>
-                      <Card sx={{ height: "100%", position: "relative", overflow: "hidden" }}>
+                      <Card
+                        sx={{
+                          height: "100%",
+                          position: "relative",
+                          overflow: "hidden",
+                        }}
+                      >
                         <Box sx={{ position: "relative", overflow: "hidden" }}>
                           <CardMedia
                             component="img"
@@ -559,7 +669,8 @@ export default function App() {
                               left: 0,
                               right: 0,
                               bottom: 0,
-                              background: "linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 53, 0.1))",
+                              background:
+                                "linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 53, 0.1))",
                             }}
                           />
                           <Chip
@@ -589,14 +700,30 @@ export default function App() {
                         </Box>
 
                         <CardContent sx={{ p: 4 }}>
-                          <Typography variant="h5" sx={{ mb: 2, fontWeight: 700, color: "primary.main" }}>
+                          <Typography
+                            variant="h5"
+                            sx={{
+                              mb: 2,
+                              fontWeight: 700,
+                              color: "primary.main",
+                            }}
+                          >
                             {project.title}
                           </Typography>
-                          <Typography color="text.secondary" sx={{ mb: 3, lineHeight: 1.6 }}>
+                          <Typography
+                            color="text.secondary"
+                            sx={{ mb: 3, lineHeight: 1.6 }}
+                          >
                             {project.description}
                           </Typography>
 
-                          <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ mb: 4 }}>
+                          <Stack
+                            direction="row"
+                            spacing={1}
+                            flexWrap="wrap"
+                            rowGap={1}
+                            sx={{ mb: 4 }}
+                          >
                             {project.technologies.map((tech) => (
                               <Chip
                                 key={tech}
@@ -606,7 +733,6 @@ export default function App() {
                                 sx={{
                                   borderColor: "primary.main",
                                   color: "primary.main",
-                                  mb: 1,
                                   fontWeight: 500,
                                   "&:hover": {
                                     backgroundColor: "rgba(0, 212, 255, 0.1)",
@@ -624,10 +750,9 @@ export default function App() {
                               target="_blank"
                               rel="noopener noreferrer"
                               sx={{
-                                background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
+                                borderColor: "primary.main",
                                 "&:hover": {
                                   transform: "translateY(-2px)",
-                                  boxShadow: "0 8px 20px rgba(0, 212, 255, 0.4)",
                                 },
                               }}
                             >
@@ -666,9 +791,15 @@ export default function App() {
               {projects
                 .filter((p) => !p.featured)
                 .map((project, index) => (
-                  <Grid size={{ xs: 12}} key={project.id}>
+                  <Grid size={{ xs: 12 }} key={project.id}>
                     <Fade in={isVisible} timeout={2000 + index * 200}>
-                      <Card sx={{ display: "flex", height: 220, overflow: "hidden" }}>
+                      <Card
+                        sx={{
+                          display: "flex",
+                          height: 220,
+                          overflow: "hidden",
+                        }}
+                      >
                         <CardMedia
                           component="img"
                           sx={{ width: 180, filter: "brightness(0.8)" }}
@@ -676,14 +807,26 @@ export default function App() {
                           alt={project.title}
                         />
                         <CardContent sx={{ flex: 1, p: 3 }}>
-                          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
-                            <Typography variant="h6" sx={{ fontWeight: 600, color: "primary.main" }}>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                              mb: 1,
+                            }}
+                          >
+                            <Typography
+                              variant="h6"
+                              sx={{ fontWeight: 600, color: "primary.main" }}
+                            >
                               {project.title}
                             </Typography>
                             <Chip
                               label={project.year}
                               size="small"
-                              sx={{ backgroundColor: "rgba(0, 212, 255, 0.2)", color: "primary.main" }}
+                              sx={{
+                                backgroundColor: "rgba(0, 212, 255, 0.2)",
+                                color: "primary.main",
+                              }}
                             />
                           </Box>
                           <Typography
@@ -700,7 +843,12 @@ export default function App() {
                           >
                             {project.description}
                           </Typography>
-                          <Stack direction="row" spacing={0.5} flexWrap="wrap" sx={{ mb: 2 }}>
+                          <Stack
+                            direction="row"
+                            spacing={0.5}
+                            flexWrap="wrap"
+                            sx={{ mb: 2 }}
+                          >
                             {project.technologies.slice(0, 3).map((tech) => (
                               <Chip
                                 key={tech}
@@ -715,13 +863,6 @@ export default function App() {
                                 }}
                               />
                             ))}
-                            {project.technologies.length > 3 && (
-                              <Chip
-                                label={`+${project.technologies.length - 3}`}
-                                size="small"
-                                sx={{ fontSize: "0.7rem", height: 22, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-                              />
-                            )}
                           </Stack>
                           <Stack direction="row" spacing={1}>
                             <Button
@@ -732,8 +873,10 @@ export default function App() {
                               target="_blank"
                               rel="noopener noreferrer"
                               sx={{
-                                fontSize: "0.75rem",
-                                background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
+                                borderColor: "primary.main",
+                                "&:hover": {
+                                  transform: "translateY(-2px)",
+                                },
                               }}
                             >
                               Demo
@@ -786,29 +929,37 @@ export default function App() {
                   Something Amazing
                 </Box>
               </Typography>
-              <Typography variant="h6" color="text.secondary" sx={{ mb: 8, fontWeight: 300, lineHeight: 1.6 }}>
-                Ready to turn your ideas into reality? I'm passionate about creating innovative solutions that make a
-                difference. Let's collaborate and build the future together.
+              <Typography
+                variant="h6"
+                color="text.secondary"
+                sx={{ mb: 8, fontWeight: 300, lineHeight: 1.6 }}
+              >
+                Ready to turn your ideas into reality? I'm passionate about
+                creating innovative solutions that make a difference. Let's
+                collaborate and build the future together.
               </Typography>
 
-              <Stack direction="row" spacing={3} justifyContent="center" flexWrap="wrap">
+              <Stack
+                direction="row"
+                spacing={3}
+                justifyContent="center"
+                flexWrap="wrap"
+                rowGap={1}
+              >
                 {socialLinks.map((link) => (
                   <Button
                     key={link.name}
                     variant="outlined"
-                    size="large"
                     startIcon={<link.icon />}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    color={link.color}
                     sx={{
                       borderColor: "primary.main",
                       color: "primary.main",
-                      px: 4,
-                      py: 1.5,
                       fontSize: "1.1rem",
                       "&:hover": {
-                        background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
                         color: "white",
                         transform: "translateY(-3px) scale(1.05)",
                         boxShadow: "0 10px 25px rgba(0, 212, 255, 0.4)",
@@ -837,9 +988,18 @@ export default function App() {
           }}
         >
           <Container maxWidth="lg">
-            <Stack direction="row" justifyContent="space-between" alignItems="center" flexWrap="wrap">
-              <Typography color="text.secondary" sx={{ fontFamily: '"JetBrains Mono", monospace' }}>
-                © {new Date().getFullYear()} Steveceto. Crafted with ❤️ using React & Material-UI
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              flexWrap="wrap"
+            >
+              <Typography
+                color="text.secondary"
+                sx={{ fontFamily: '"JetBrains Mono", monospace' }}
+              >
+                © {new Date().getFullYear()} Steveceto. Crafted with ❤️ using
+                React & Material-UI
               </Typography>
               <Typography color="text.secondary" sx={{ fontSize: "0.9rem" }}>
                 Made with cutting-edge tech
@@ -849,5 +1009,5 @@ export default function App() {
         </Box>
       </Box>
     </ThemeProvider>
-  )
+  );
 }
