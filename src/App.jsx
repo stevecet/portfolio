@@ -165,19 +165,19 @@ export default function App() {
   const socialLinks = [
     {
       name: "GitHub",
-      url: "https://github.com/username",
+      url: "https://github.com/stevecet/",
       icon: GitHub,
       color: "#333",
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/username",
+      url: "https://www.linkedin.com/in/gilchrist-steve-aurel-veceto-6a4216202/",
       icon: LinkedIn,
       color: "#0077b5",
     },
     {
       name: "Email",
-      url: "mailto:your.email@example.com",
+      url: "mailto:steveceto@gmail.com",
       icon: Email,
       color: "#ea4335",
     },
@@ -302,18 +302,16 @@ export default function App() {
           <Container maxWidth="lg">
             <Fade in={isVisible} timeout={1000}>
               <Box textAlign="center">
-                <Box sx={{ mb: 4 }}>
+                <Box sx={{ mt: 5 }}>
                   <Avatar
                     sx={{
                       width: 140,
                       height: 140,
                       mx: "auto",
-                      mb: 3,
                       background: "linear-gradient(45deg, #00d4ff 30%, #ff6b35 90%)",
-                      border: "3px solid rgba(0, 212, 255, 0.3)",
                       boxShadow: "0 0 30px rgba(0, 212, 255, 0.5)",
                     }}
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face"
+                    src="img/steveceto.jpeg"
                   />
                 </Box>
 
@@ -324,11 +322,12 @@ export default function App() {
                     backgroundClip: "text",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
-                    mb: 2,
+                    my: 2,
+                    mx: "auto",
                     textShadow: "0 0 30px rgba(0, 212, 255, 0.5)",
                   }}
                 >
-                  Alex Chen
+                  Steve Veceto
                 </Typography>
 
                 <Typography
@@ -340,7 +339,7 @@ export default function App() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {"<"} Full-Stack Developer & AI Engineer {" />"}
+                  {"<"} Full-Stack Developer & Software Engineer {" />"}
                 </Typography>
 
                 <Typography variant="h4" color="text.secondary" sx={{ mb: 4, fontWeight: 300, lineHeight: 1.6 }}>
@@ -355,10 +354,10 @@ export default function App() {
                   </Box>
                 </Typography>
 
-                <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2 }}>
+                <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 4 }}>
                   <Chip
                     icon={<LocationOn />}
-                    label="San Francisco, CA"
+                    label="Douala, Cameroon"
                     variant="outlined"
                     sx={{ borderColor: "primary.main", color: "primary.main" }}
                   />
@@ -370,7 +369,7 @@ export default function App() {
                   />
                 </Stack>
 
-                <Stack direction="row" spacing={2} justifyContent="center" sx={{ mb: 6 }}>
+                {/* <Stack direction="row" spacing={2} justifyContent="center" sx={{ mb: 6 }}>
                   {socialLinks.map((link) => (
                     <Tooltip key={link.name} title={`Connect on ${link.name}`}>
                       <IconButton
@@ -394,7 +393,7 @@ export default function App() {
                       </IconButton>
                     </Tooltip>
                   ))}
-                </Stack>
+                </Stack> */}
 
                 <Button
                   variant="contained"
@@ -410,7 +409,7 @@ export default function App() {
                       transform: "translateY(-2px)",
                       boxShadow: "0 10px 25px rgba(0, 212, 255, 0.4)",
                     },
-                    mb: 4,
+                    mb: 2,
                   }}
                 >
                   Download Resume
@@ -462,7 +461,7 @@ export default function App() {
 
             <Grid container spacing={4}>
               {skills.map((skill, index) => (
-                <Grid item xs={12} sm={6} md={3} key={skill.name}>
+                <Grid size={{ xs: 12, sm:6 }} key={skill.name}>
                   <Slide in={isVisible} direction="up" timeout={1000 + index * 200}>
                     <Card sx={{ height: "100%", overflow: "hidden" }}>
                       <CardMedia
@@ -475,7 +474,7 @@ export default function App() {
                           transition: "all 0.3s ease",
                         }}
                       />
-                      <CardContent sx={{ p: 3, textAlign: "center" }}>
+                      <CardContent sx={{ py: 3, textAlign: "center" }}>
                         <skill.icon
                           sx={{
                             fontSize: "2.5rem",
@@ -539,7 +538,7 @@ export default function App() {
               {projects
                 .filter((p) => p.featured)
                 .map((project, index) => (
-                  <Grid item xs={12} md={6} key={project.id}>
+                  <Grid size={{ xs: 12, md: 6 }} key={project.id}>
                     <Fade in={isVisible} timeout={1500 + index * 300}>
                       <Card sx={{ height: "100%", position: "relative", overflow: "hidden" }}>
                         <Box sx={{ position: "relative", overflow: "hidden" }}>
@@ -667,7 +666,7 @@ export default function App() {
               {projects
                 .filter((p) => !p.featured)
                 .map((project, index) => (
-                  <Grid item xs={12} md={6} key={project.id}>
+                  <Grid size={{ xs: 12}} key={project.id}>
                     <Fade in={isVisible} timeout={2000 + index * 200}>
                       <Card sx={{ display: "flex", height: 220, overflow: "hidden" }}>
                         <CardMedia
@@ -840,7 +839,7 @@ export default function App() {
           <Container maxWidth="lg">
             <Stack direction="row" justifyContent="space-between" alignItems="center" flexWrap="wrap">
               <Typography color="text.secondary" sx={{ fontFamily: '"JetBrains Mono", monospace' }}>
-                © {new Date().getFullYear()} Alex Chen. Crafted with ❤️ using React & Material-UI
+                © {new Date().getFullYear()} Steveceto. Crafted with ❤️ using React & Material-UI
               </Typography>
               <Typography color="text.secondary" sx={{ fontSize: "0.9rem" }}>
                 Made with cutting-edge tech
