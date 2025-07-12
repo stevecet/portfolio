@@ -196,6 +196,28 @@ export default function App() {
     },
   ];
 
+  const certifications = [
+    {
+      id: 1,
+      title: "IBM Full Stack Software Developer Certificate",
+      description:
+        "A comprehensive, hands-on program that equips with the skills to build, deploy, and manage full-stack applications, covering essential concepts in DevOps, containerization with Docker, version control with Git/GitHub, and cloud deployment using IBM Cloud and CI/CD pipelines.",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/960px-IBM_logo.svg.png?20250604110737",
+      technologies: [
+        "Full-Stack Web Development",
+        "Cloud Computing",
+        "Software Architecture",
+        "Prompt Engineering",
+        "Git (Version Control System)",
+      ],
+      liveUrl: "https://example-ai-dashboard.com",
+      githubUrl: "https://github.com/username/ai-dashboard",
+      featured: true,
+      year: "2025",
+    },
+  ];
+
   const socialLinks = [
     {
       name: "GitHub",
@@ -227,7 +249,14 @@ export default function App() {
     {
       name: "Frontend",
       icon: Code,
-      items: ["React", "Next.js", "TypeScript", "Vue.js", "Angular", "Tailwind"],
+      items: [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Vue.js",
+        "Angular",
+        "Tailwind",
+      ],
       image:
         "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop",
     },
@@ -575,10 +604,12 @@ export default function App() {
                         </Typography>
                         <Stack
                           direction="row"
-                          spacing={1}
-                          flexWrap="wrap"
-                          rowGap={1}
+                          spacing={2}
                           justifyContent="center"
+                          flexWrap="wrap"
+                          useFlexGap
+                          rowGap={2}
+                          columnGap={2}
                         >
                           {skill.items.map((item) => (
                             <Chip
@@ -707,9 +738,11 @@ export default function App() {
 
                           <Stack
                             direction="row"
-                            spacing={1}
+                            spacing={2}
                             flexWrap="wrap"
-                            rowGap={1}
+                            useFlexGap
+                            rowGap={2}
+                            columnGap={2}
                             sx={{ mb: 4 }}
                           >
                             {project.technologies.map((tech) => (
@@ -867,8 +900,11 @@ export default function App() {
                           </Typography>
                           <Stack
                             direction="row"
-                            spacing={0.5}
+                            spacing={2}
                             flexWrap="wrap"
+                            useFlexGap
+                            rowGap={2}
+                            columnGap={2}
                             sx={{ mb: 2 }}
                           >
                             {project.technologies.slice(0, 3).map((tech) => (
@@ -977,7 +1013,7 @@ export default function App() {
             borderBottom: "1px solid rgba(0, 212, 255, 0.2)",
           }}
         >
-          <Container maxWidth="lg">
+          <Container maxWidth="md">
             <Typography variant="h2" textAlign="center" sx={{ mb: 3 }}>
               Certifications
             </Typography>
@@ -993,10 +1029,10 @@ export default function App() {
 
             {/* Certifications */}
             <Grid container spacing={4} sx={{ mb: 3 }}>
-              {projects
+              {certifications
                 .filter((p) => p.featured)
                 .map((project, index) => (
-                  <Grid size={{ xs: 12, md: 6 }} key={project.id}>
+                  <Grid key={project.id}>
                     <Fade in={isVisible} timeout={1500 + index * 300}>
                       <Card
                         sx={{
@@ -1005,12 +1041,14 @@ export default function App() {
                           overflow: "hidden",
                         }}
                       >
-                        <Box sx={{ position: "relative", overflow: "hidden" }}>
+                        <Box sx={{ position: "relative", overflow: "hidden", p:3, justifyContent:"center", display:"flex" }}>
                           <CardMedia
                             component="img"
                             image={project.image}
                             alt={project.title}
                             sx={{
+                              width:"50%",
+                            
                               transition: "transform 0.5s ease",
                               "&:hover": { transform: "scale(1.1)" },
                             }}
@@ -1060,9 +1098,11 @@ export default function App() {
 
                           <Stack
                             direction="row"
-                            spacing={1}
+                            spacing={2}
                             flexWrap="wrap"
-                            rowGap={1}
+                            useFlexGap
+                            rowGap={2}
+                            columnGap={2}
                             sx={{ mb: 4 }}
                           >
                             {project.technologies.map((tech) => (
@@ -1100,7 +1140,7 @@ export default function App() {
             backdropFilter: "blur(20px)",
             borderTop: "1px solid rgba(0, 212, 255, 0.2)",
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=600&fit=crop')",
+              "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=600&fit=cover')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundBlendMode: "overlay",
@@ -1116,7 +1156,7 @@ export default function App() {
               </Typography>
               <Typography
                 variant="h6"
-                color="text.secondary"
+                color="primary.secondary"
                 sx={{ mb: 8, fontWeight: 300, lineHeight: 1.6 }}
               >
                 Ready to turn your ideas into reality? I'm passionate about
@@ -1126,10 +1166,12 @@ export default function App() {
 
               <Stack
                 direction="row"
-                spacing={3}
+                spacing={2}
                 justifyContent="center"
-                flexWrap={"wrap-reverse"}
-                rowGap={1}
+                flexWrap="wrap"
+                useFlexGap
+                rowGap={2}
+                columnGap={2}
               >
                 {socialLinks.map((link) => (
                   <Button
@@ -1194,19 +1236,21 @@ export default function App() {
           <Container maxWidth="lg">
             <Stack
               direction="row"
-              justifyContent="space-between"
-              alignItems="center"
+              spacing={2}
+              justifyContent="center"
               flexWrap="wrap"
+              useFlexGap
+              rowGap={2}
+              columnGap={2}
             >
               <Typography
                 color="text.secondary"
                 sx={{ fontFamily: '"JetBrains Mono", monospace' }}
               >
-                © {new Date().getFullYear()} Steveceto. Crafted with ❤️ using
-                React & Material-UI
+                © {new Date().getFullYear()} Steveceto.
               </Typography>
               <Typography color="text.secondary" sx={{ fontSize: "0.9rem" }}>
-                Made with cutting-edge tech
+                Crafted with ❤️ using React & Material-UI
               </Typography>
             </Stack>
           </Container>
