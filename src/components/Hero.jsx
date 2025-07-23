@@ -1,4 +1,8 @@
-import { CloudDownload, KeyboardArrowDown, Translate } from "@mui/icons-material";
+import {
+  CloudDownload,
+  KeyboardArrowDown,
+  Translate,
+} from "@mui/icons-material";
 import {
   Typography,
   Box,
@@ -7,10 +11,10 @@ import {
   Container,
   Fade,
   Button,
-  Avatar
+  Avatar,
 } from "@mui/material";
 
-export default function Hero({isEnglish, isVisible, setIsEnglish}) {
+export default function Hero({ isEnglish, isVisible, setIsEnglish }) {
   return (
     <Box
       component="section"
@@ -138,8 +142,12 @@ export default function Hero({isEnglish, isVisible, setIsEnglish}) {
                 startIcon={<CloudDownload />}
                 onClick={() => {
                   const link = document.createElement("a");
-                  link.href = "/CV_Steveceto.pdf";
-                  link.download = "CV_Steveceto.pdf";
+                  link.href = isEnglish
+                    ? "/CV_Steveceto.pdf"
+                    : "/Gilchrist_Steve_Aurel-Resume.pdf";
+                  link.download = isEnglish
+                    ? "CV_Steveceto.pdf"
+                    : "Gilchrist_Steve_Aurel-Resume.pdf";
                   link.click();
                 }}
                 sx={{

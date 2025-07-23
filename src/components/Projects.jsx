@@ -110,7 +110,7 @@ export default function Projects({ projects, isEnglish, isVisible }) {
                         color="text.secondary"
                         sx={{ mb: 3, lineHeight: 1.6 }}
                       >
-                        {project.description}
+                        {isEnglish ? project.description: project.descriptionvf}
                       </Typography>
 
                       <Stack
@@ -272,7 +272,7 @@ export default function Projects({ projects, isEnglish, isVisible }) {
                           lineHeight: 1.4,
                         }}
                       >
-                        {project.description}
+                        {isEnglish ? project.description: project.descriptionvf}
                       </Typography>
                       <Stack
                         direction="row"
@@ -283,7 +283,7 @@ export default function Projects({ projects, isEnglish, isVisible }) {
                         columnGap={2}
                         sx={{ mb: 2 }}
                       >
-                        {project.technologies.slice(0, 3).map((tech) => (
+                        {project.technologies.map((tech) => (
                           <Chip
                             key={tech}
                             label={tech}
